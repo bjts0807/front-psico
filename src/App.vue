@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderComponent v-if="showHeader"/>
+    <SidebarComponent v-if="showSidenav"/>
+    <div class="pc-container">
+      <div class="pc-content">
+          <router-view />
+      </div>
+    </div>
+    <FooterComponent v-show="showFooter"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SidebarComponent from './views/partes/SidebarComponent';
+import FooterComponent from './views/partes/FooterComponent';
+import HeaderComponent from './views/partes/HeaderComponent';
+import { mapState } from "vuex";
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    SidebarComponent,FooterComponent,HeaderComponent
+  },
+  computed: {
+    ...mapState([
+      "showSidenav",
+      "showHeader",
+      "showFooter"
+    ]),
+    ...mapState(['is_logged', 'user']),
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
