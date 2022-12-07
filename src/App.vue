@@ -19,6 +19,9 @@ export default {
   components: {
     SidebarComponent,FooterComponent,HeaderComponent
   },
+  async created() {
+    await this.$store.dispatch("currentUser");
+  },
   computed: {
     ...mapState([
       "showSidenav",
