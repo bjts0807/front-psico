@@ -1,14 +1,14 @@
 <template>
-    <div class="app">
-      <HeaderComponent />
+  <div class="app">
+    <HeaderComponent />
     <SidebarComponent/>
     <div class="pc-container">
       <div class="pc-content">
-          <router-view />
+        <router-view />
       </div>
     </div>
     <FooterComponent />
-    </div>
+  </div>
 </template>
 
 <script>

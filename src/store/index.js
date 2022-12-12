@@ -4,15 +4,11 @@ import router from "../router/index"
 
 const store = createStore({
   state: {
-    //hideConfigButton: false,
     is_logged : '',
     layout: 'Loading',
-    user: null,
-    spinner: false
+    user: null
   },
   mutations: {
-    
-    
     SET_LOGIN_USER(state, user) {
       state.user = user;
     },
@@ -21,44 +17,26 @@ const store = createStore({
     },
     SET_LOGIN_STATE(state, loginState) {
       state.is_logged = loginState;
-  },
-  SET_SPINNER_STATE(state, spinner) {
-    state.spinner = spinner;
-}
+    },
   },
   actions: {
     async login({ commit }, credentials) {
       try {
-          await csrfCookie();
-          const userCredentials = await login(credentials);
-          commit('SET_LOGIN_USER', userCredentials.data);
-          commit('SET_LAYOUT', 'AppLayout');
-          commit('SET_LOGIN_STATE', true);
-          router.push({
-            name : 'Dashboard'
-          }) 
+        await csrfCookie();
+        const userCredentials = await login(credentials);
+        commit('SET_LOGIN_USER', userCredentials.data);
+        commit('SET_LAYOUT', 'AppLayout');
+        commit('SET_LOGIN_STATE', true);
+        router.push({
+          name : 'Dashboard'
+        }) 
       } catch (e) {
-          throw {
-              'status': e.response.status,
-              'error': e.response.error
-          }
+        throw {
+          'status': e.response.status,
+          'error': e.response.error
+        }
       }
-  },
-    /* async login({commit }, credentials) {
-      await csrfCookie();
-      await  login(credentials).then(response => {
-          if (response.data) {
-            //commit("isLogged", true);
-              commit('SET_LOGIN_USER', response.data);
-              commit('SET_LAYOUT', 'AppLayout');
-              commit('SET_LOGIN_STATE', true);
-              router.push({
-                name : 'Dashboard'
-              }) 
-          }
-         
-      });
-    }, */
+    },
     async logout({ commit }) {
       await logout();
       commit('SET_LOGIN_USER', null);
@@ -67,7 +45,6 @@ const store = createStore({
     },
     async currentUser({ commit }) {
       try {
-
         let response = await getAuthenticatedUser();
 
         if (response.data) {
@@ -90,6 +67,5 @@ const store = createStore({
     },
   },
 });
-
 
 export default store;

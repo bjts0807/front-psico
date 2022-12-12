@@ -23,11 +23,11 @@
              
               <form @submit.prevent="login()">
                  
-              
+             
               <div class="form-group" v-if="has_error">
                   <div class="alert alert-danger alert-dismissible fade show w-100 d-block" role="alert">
-                    <i class="fas fa-exclamation-triangle fa-fw"></i>
-                    <div v-text="message"></div>
+                   
+                    <div ><i class="fas fa-exclamation-triangle fa-fw"></i> {{message}}</div>
                   </div>
                 </div>
               <div class="form-floating mb-3">
@@ -69,14 +69,12 @@ import {useRouter} from "vue-router";
 
 export default {
   name: "LoginComponent",
-  
   setup: () => ({ v$: useVuelidate() }),
   data (){
-    
     return {
       form: {
-          email: "bjts95@gmail.com",
-          password: "12345",
+        email: "bjts95@gmail.com",
+        password: "12345",
       },
       has_error : false,
       message : "",
@@ -92,34 +90,34 @@ export default {
     }
   },
   methods: {
-     
     async login() {
       const router = useRouter();
       try{
-
         if (!await this.v$.form.$validate()) return;
 
         this.LoaderSpinnerShow();
 
         await this.$store.dispatch("login", this.form);
+
         await router.push({ name : 'Dashboard' });
+
         this.LoaderSpinnerHide();
       }catch(error){
-          this.LoaderSpinnerHide();
-          switch(error.response.status){
-              case 422:
-                  this.has_error = true;
-                  this.message = "Usuario o contraseña incorrectos";
-                  break;
-                case 401:
-                      this.has_error = true;
-                      this.message = "Usuario o contraseña incorrectos";
-              break;
-              default :
-                  this.has_error = true;
-                  this.message = "Ha ocurrido un error, por favor intente nuevamente";
-              break;
-          }
+        this.LoaderSpinnerHide();
+        switch(error.status){
+          case 422:
+            this.has_error = true;
+            this.message = "Usuario o contraseña incorrectos";
+          break;
+          case 401:
+            this.has_error = true;
+            this.message = "Usuario o contraseña incorrectos";
+          break;
+          default :
+            this.has_error = true;
+            this.message = "Ha ocurrido un error, por favor intente nuevamente";
+          break;
+        }
       }
     }
   },
