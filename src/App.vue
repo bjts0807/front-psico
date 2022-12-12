@@ -1,35 +1,28 @@
 <template>
-    <HeaderComponent v-if="showHeader"/>
-    <SidebarComponent v-if="showSidenav"/>
-    <div class="pc-container">
-      <div class="pc-content">
-          <router-view />
-      </div>
-    </div>
-    <FooterComponent v-show="showFooter"/>
+  <component :is="layout"></component>
 </template>
-
 <script>
-import SidebarComponent from './views/partes/SidebarComponent';
-import FooterComponent from './views/partes/FooterComponent';
-import HeaderComponent from './views/partes/HeaderComponent';
-import { mapState } from "vuex";
+
+import AppLayout from "./layouts/AppLayout";
+import BlankLayout from "./layouts/BlankLayout";
+import {  mapState } from "vuex";
+import Loading from "./components/Loading";
 export default {
   name: 'App',
   components: {
-    SidebarComponent,FooterComponent,HeaderComponent
+    AppLayout, BlankLayout,Loading
   },
-  async created() {
-    await this.$store.dispatch("currentUser");
+  created() {
+    this.$store.dispatch("currentUser");
+  },
+  watch : {
+    is_logged : function(state){
+      if(!state && this.$route.name !== 'signin') this.$router.push({name:'signin'});
+    }
   },
   computed: {
-    ...mapState([
-      "showSidenav",
-      "showHeader",
-      "showFooter"
-    ]),
-    ...mapState(['is_logged', 'user']),
+    ...mapState(["is_logged", 'user','layout']),
   },
 }
-</script>
 
+</script>
