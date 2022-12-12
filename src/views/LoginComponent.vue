@@ -10,20 +10,20 @@
               <div class="row">
                 <div class="d-flex justify-content-center">
                   <div class="auth-header">
-                    <h2 class="text-secondary mt-5"><b>Hi, Welcome Back</b></h2>
-                    <p class="f-16 mt-2">Enter your credentials to continue</p>
+                    <h2 class="text-secondary mt-5"><b>Hi, Bienvenido</b></h2>
+                    <p class="f-16 mt-2">Ingresa tus credenciales</p>
                   </div>
                 </div>
               </div>
-              <div class="d-grid">
+              <!-- <div class="d-grid">
                 <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
                   <img src="../../public/assets/images/authentication/google-icon.svg" />Sign In With Google
                 </button>
-              </div>
-              <div class="saprator mt-3">
-                <span>or</span>
-              </div>
-              <h5 class="my-4 d-flex justify-content-center">Sign in with Email address</h5>
+              </div> -->
+             
+              <form @submit.prevent="login()">
+                 
+              
               <div class="form-group" v-if="has_error">
                   <div class="alert alert-danger alert-dismissible fade show w-100 d-block" role="alert">
                     <i class="fas fa-exclamation-triangle fa-fw"></i>
@@ -38,24 +38,23 @@
                   <i class="fa fa-warning fa-fw"></i> Por favor ingrese su e-mail.
                 </div>
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" v-model="form.password" id="floatingInput" placeholder="Password" />
+                <input type="password" class="form-control" v-model="form.password" id="floatingInput" placeholder="Password" />
                 <label for="floatingInput">Password</label>
               </div>
               <div v-if="v$.form.password.$error" class="text-danger" style="font-size:14px" >
                   <i class="fa fa-warning fa-fw"></i> Por favor ingrese su contraseña.
                 </div>
-              <div class="d-flex mt-1 justify-content-between">
+              <!-- <div class="d-flex mt-1 justify-content-between">
                 <div class="form-check">
                   <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
                   <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>
                 </div>
                 <h5 class="text-secondary">Forgot Password?</h5>
-              </div>
+              </div> -->
               <div class="d-grid mt-4">
-                <button type="button" class="btn btn-secondary" @click="login();">Sign In</button>
+                <button type="submit" class="btn btn-secondary" >Acceder</button>
               </div>
-              <hr />
-              <h5 class="d-flex justify-content-center">Don't have an account?</h5>
+              </form>
             </div>
           </div>
         </div>
@@ -64,13 +63,16 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 import useVuelidate from '@vuelidate/core'
 import { required ,email} from '@vuelidate/validators';
+import {useRouter} from "vue-router";
+
 export default {
   name: "LoginComponent",
+  
   setup: () => ({ v$: useVuelidate() }),
   data (){
+    
     return {
       form: {
           email: "bjts95@gmail.com",
@@ -80,14 +82,7 @@ export default {
       message : "",
     }
   },
-  beforeMount() {
-    this.toggleEveryDisplay();
-    this.toggleHideConfig();
-  },
-  beforeUnmount() {
-    this.toggleEveryDisplay();
-    this.toggleHideConfig();
-  },
+
   validations(){
     return {
       form: {
@@ -97,8 +92,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+     
     async login() {
+      const router = useRouter();
       try{
 
         if (!await this.v$.form.$validate()) return;
@@ -106,6 +102,7 @@ export default {
         this.LoaderSpinnerShow();
 
         await this.$store.dispatch("login", this.form);
+        await router.push({ name : 'Dashboard' });
         this.LoaderSpinnerHide();
       }catch(error){
           this.LoaderSpinnerHide();

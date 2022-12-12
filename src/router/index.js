@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import store from "../store/index";
+
 
 const routes = [
 
@@ -36,11 +36,5 @@ const router = createRouter({
   linkActiveClass: "active",
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresLogin) && !store.state.is_logged) {
-      next("/signin")
-  } else {
-      next()
-  }
-}) 
+
 export default router;
