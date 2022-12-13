@@ -214,7 +214,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" @click="logout();">
+              <a class="dropdown-item d-flex align-items-center " @click="logout();">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
