@@ -1,185 +1,234 @@
 <template>
- <!-- [ Header Topbar ] start -->
-<header class="pc-header">
-  <div class="m-header">
-    <a href="index.html" class="b-brand">
-      <!-- ========   change your logo hear   ============ -->
-      <img src="../../../public/assets/images/logo-dark.svg" alt="" class="logo logo-lg" />
-    </a>
-    <!-- ======= Menu collapse Icon ===== -->
-    <div class="pc-h-item">
-      <a href="#" class="pc-head-link head-link-secondary m-0" id="sidebar-hide">
-        <i class="ti ti-menu-2"></i>
+<!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Plantilla</span>
       </a>
-    </div>
-  </div>
-  <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
-    <div class="me-auto pc-mob-drp">
-    <ul class="list-unstyled">
-        <li class="pc-h-item header-mobile-collapse">
-        <a href="#" class="pc-head-link head-link-secondary ms-0" id="mobile-collapse">
-            <i class="ti ti-menu-2"></i>
-        </a>
-        </li>
-        <li class="dropdown pc-h-item d-inline-flex d-md-none">
-        <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#"
-            role="button" aria-haspopup="false" aria-expanded="false">
-            <i class="ti ti-search"></i>
-        </a>
-        <div class="dropdown-menu pc-h-dropdown drp-search">
-            <form class="px-3">
-            <div class="form-group mb-0 d-flex align-items-center">
-                <i class="ti ti-search"></i>
-                <input type="search" class="form-control border-0 shadow-none" placeholder="Search here..." />
-            </div>
-            </form>
-        </div>
-        </li>
-        <li class="pc-h-item d-none d-md-inline-flex">
-        <form class="header-search">
-            <i class="ti ti-search icon-search"></i>
-            <input type="search" class="form-control" placeholder="Search here..." />
-            <button class="btn btn-light-secondary btn-search"><i class="ti ti-adjustments-horizontal"></i></button>
-        </form>
-        </li>
-    </ul>
-    </div>
-    <!-- [Mobile Media Block end] -->
-    <div class="ms-auto">
-    <ul class="list-unstyled">
-        <li class="dropdown pc-h-item">
-        <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
-            role="button" aria-haspopup="false" aria-expanded="false">
-            <i class="ti ti-bell"></i>
-        </a>
-        <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
-            <div class="dropdown-header">
-            <a href="#!" class="link-primary float-end text-decoration-underline">Mark as all read</a>
-            <h5>All Notification <span class="badge bg-warning rounded-pill ms-1">01</span></h5>
-            </div>
-            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
-            style="max-height: calc(100vh - 215px)">
-            <div class="list-group list-group-flush w-100">
-                <div class="list-group-item">
-                <select class="form-select">
-                    <option value="all">All Notification</option>
-                    <option value="new">New</option>
-                    <option value="unread">Unread</option>
-                    <option value="other">Other</option>
-                </select>
+      <i class="bi bi-list toggle-sidebar-btn" @click="toggle();"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 4 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Lorem Ipsum</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Atque rerum nesciunt</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>1 hr. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Sit rerum fuga</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>2 hrs. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Dicta reprehenderit</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>4 hrs. ago</p>
+              </div>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have 3 new messages
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Maria Hudson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>4 hrs. ago</p>
                 </div>
-                <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                    <img src="../../../public/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
-                    </div>
-                    <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">2 min ago</span>
-                    <h5>John Doe</h5>
-                    <p class="text-body fs-6">It is a long established fact that a reader will be distracted </p>
-                    <div class="badge rounded-pill bg-light-danger">Unread</div>
-                    <div class="badge rounded-pill bg-light-warning">New</div>
-                    </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Anna Nelson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>6 hrs. ago</p>
                 </div>
-                </a>
-                <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                    <div class="user-avtar bg-light-success"><i class="ti ti-building-store"></i></div>
-                    </div>
-                    <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">3 min ago</span>
-                    <h5>Store Verification Done</h5>
-                    <p class="text-body fs-6">We have successfully received your request.</p>
-                    <div class="badge rounded-pill bg-light-danger">Unread</div>
-                    </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>David Muldon</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>8 hrs. ago</p>
                 </div>
-                </a>
-                <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                    <div class="user-avtar bg-light-primary"><i class="ti ti-mailbox"></i></div>
-                    </div>
-                    <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">5 min ago</span>
-                    <h5>Check Your Mail.</h5>
-                    <p class="text-body fs-6">All done! Now check your inbox as you're in for a sweet treat! </p>
-                    <button class="btn btn-sm btn-primary">Mail <i class="ti ti-brand-telegram"></i></button>
-                    </div>
-                </div>
-                </a>
-                <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                    <img src="../../../public/assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar" />
-                    </div>
-                    <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">8 min ago</span>
-                    <h5>John Doe</h5>
-                    <p class="text-body fs-6">Uploaded two file on &nbsp;<strong>21 Jan 2020</strong></p>
-                    <div class="notification-file d-flex p-3 bg-light-secondary rounded">
-                        <i class="ti ti-arrow-bar-to-down"></i>
-                        <h5 class="m-0">demo.jpg</h5>
-                    </div>
-                    </div>
-                </div>
-                </a>
-                <a class="list-group-item list-group-item-action">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                    <img src="../../../public/assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar" />
-                    </div>
-                    <div class="flex-grow-1 ms-1">
-                    <span class="float-end text-muted">10 min ago</span>
-                    <h5>Joseph William</h5>
-                    <p class="text-body fs-6">It is a long established fact that a reader will be distracted </p>
-                    <div class="badge rounded-pill bg-light-success">Confirmation of Account</div>
-                    </div>
-                </div>
-                </a>
-            </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="text-center py-2">
-            <a href="#!" class="link-primary">Mark as all read</a>
-            </div>
-        </div>
-        </li>
-        <li class="dropdown pc-h-item header-user-profile">
-        <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
-            role="button" aria-haspopup="false" aria-expanded="false">
-            <img src="../../../public/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
-            <span>
-            <i class="ti ti-settings"></i>
-            </span>
-        </a>
-        <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
-            <div class="dropdown-header">
-            <h4>Hola, <span class="text-primary" v-if="this.$store.state.user">{{this.$store.state.user.name}}</span></h4>
-            <hr />
-            <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 280px)">
-               
-                <a href="#" class="dropdown-item">
-                <i class="ti ti-settings"></i>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
+
+          </ul><!-- End Messages Dropdown Items -->
+
+        </li><!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2" v-if="this.$store.state.user">{{this.$store.state.user.name}}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6><span class="font-weight-bold" v-if="this.$store.state.user">{{this.$store.state.user.name}}</span></h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                <i class="ti ti-user"></i>
-                <span>Social Profile</span>
-                </a>
-                <a @click="logout()" class="dropdown-item">
-                <i class="ti ti-logout"></i>
-                <span>Logout</span>
-                </a>
-            </div>
-            </div>
-        </div>
-        </li>
-    </ul>
-    </div> 
-</div>
-</header>
-<!-- [ Header ] end -->
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" @click="logout();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+
 </template>
 <script>
 
@@ -222,6 +271,19 @@ export default {
     }
     return {
       logout
+    }
+  },
+  methods:{
+    toggle(){
+      const select = (el, all = false) => {
+        el = el.trim()
+        if (all) {
+          return [...document.querySelectorAll(el)]
+        } else {
+          return document.querySelector(el)
+        }
+      }
+      select('body').classList.toggle('toggle-sidebar')
     }
   },
 

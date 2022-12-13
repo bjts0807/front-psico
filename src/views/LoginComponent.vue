@@ -1,27 +1,19 @@
 <template>
- <div class="auth-main">
-      <div class="auth-wrapper v3">
-        <div class="auth-form">
-          <div class="card my-5">
-            <div class="card-body">
-              <a href="#" class="d-flex justify-content-center">
-                <img src="../../public/assets/images/logo-dark.svg" />
-              </a>
-              <div class="row">
-                <div class="d-flex justify-content-center">
-                  <div class="auth-header">
-                    <h2 class="text-secondary mt-5"><b>Hi, Bienvenido</b></h2>
-                    <p class="f-16 mt-2">Ingresa tus credenciales</p>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="d-grid">
-                <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                  <img src="../../public/assets/images/authentication/google-icon.svg" />Sign In With Google
-                </button>
-              </div> -->
-             
-              <form @submit.prevent="login()">
+<div class="wrapper">
+      <section class="login-content">
+         <div class="row m-0 align-items-center bg-white vh-100">            
+            <div class="col-md-6">
+               <div class="row justify-content-center">
+                  <div class="col-md-10">
+                     <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                        <div class="card-body">
+                          
+                           <div class="text-center">
+                            <img src="../assets/img/login.gif" alt="" width="150" >
+                           </div>
+                           
+                           <p class="text-center">Ingresa tus credenciales</p>
+                            <form @submit.prevent="login()">
                  
              
               <div class="form-group" v-if="has_error">
@@ -52,14 +44,31 @@
                 <h5 class="text-secondary">Forgot Password?</h5>
               </div> -->
               <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-secondary" >Acceder</button>
+                <button type="submit" class="btn btn-primary" >Acceder</button>
               </div>
               </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sign-bg">
+                  <svg width="280" height="230" viewBox="0 0 431 398" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <g opacity="0.05">
+                     <rect x="-157.085" y="193.773" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 -157.085 193.773)" fill="#3B8AFF"/>
+                     <rect x="7.46875" y="358.327" width="543" height="77.5714" rx="38.7857" transform="rotate(-45 7.46875 358.327)" fill="#3B8AFF"/>
+                     <rect x="61.9355" y="138.545" width="310.286" height="77.5714" rx="38.7857" transform="rotate(45 61.9355 138.545)" fill="#3B8AFF"/>
+                     <rect x="62.3154" y="-190.173" width="543" height="77.5714" rx="38.7857" transform="rotate(45 62.3154 -190.173)" fill="#3B8AFF"/>
+                     </g>
+                  </svg>
+               </div>
             </div>
-          </div>
-        </div>
+            <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+               <!-- <img src="../assets/img/" class="img-fluid gradient-main animated-scaleX" alt="images"> -->
+            </div>
+         </div>
+      </section>
       </div>
-    </div>
+ 
 </template>
 
 <script>
